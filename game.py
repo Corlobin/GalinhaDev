@@ -28,7 +28,7 @@ class Game(object):
         self.posicaoCirculo = 320
         self.player = self.load_image('galinhaAndando.gif',1)
 
-        self.backgroundMenu = self.load_image('menu3.png',0)
+        self.backgroundMenu = self.load_image('panel.png',0)
         self.backgroundMenu = pygame.transform.scale2x(self.backgroundMenu)
         self.backgroundMenu = pygame.transform.scale2x(self.backgroundMenu)
 
@@ -36,7 +36,8 @@ class Game(object):
         self.backgroundJogo = pygame.transform.scale(self.backgroundJogo, (800, 500))
         self.galinha = Player(self.player, 408, 5)
 
-        self.galinhaAndandoMenu = Player(self.player, 40, 1)
+        self.galinhaAndandoMenu1 = Player(self.player, 120, 1)
+        self.galinhaAndandoMenu2 = Player(self.player, 180, 1)
         self.fonte = pygame.font.SysFont("comicsansms",30)
         self.textoIniciar = self.fonte.render("Iniciar",1, (255,255,225))
         self.textoSair = self.fonte.render("Sair",1, (255,255,225))
@@ -79,11 +80,15 @@ class Game(object):
 
 
         screen.blit(self.backgroundMenu, (0,0))
-        self.galinhaAndandoMenu.moveDireita()
-        screen.blit(self.galinhaAndandoMenu.image, self.galinhaAndandoMenu.pos)
+        self.galinhaAndandoMenu1.moveDireita()
+        self.galinhaAndandoMenu2.moveDireita()
+
+
+        screen.blit(self.galinhaAndandoMenu1.image, self.galinhaAndandoMenu1.pos)
+        screen.blit(self.galinhaAndandoMenu2.image, self.galinhaAndandoMenu2.pos)
         screen.blit(self.textoIniciar, (300,300))
         screen.blit(self.textoSair, (300, 340))
-        pygame.draw.circle(screen, (0,0,0), (285, self.posicaoCirculo), 5, 0)
+        pygame.draw.circle(screen, (255,255,255), (285, self.posicaoCirculo), 5, 0)
         pygame.display.update()
         return
 
