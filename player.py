@@ -1,22 +1,22 @@
-'''
-Created on 06/09/2015
 
-@author: Ricardo
-'''
+import pygame
 
-class Player(object):
-    
-    
-    '''
-        Modelo do player
-    '''
-
-
+class Player(pygame.sprite.Sprite):
+    image = None
     def __init__(self, image, height, speed):
+        pygame.sprite.Sprite.__init__(self)
+
+        if Player.image is None:
+            # This is the first time this class has been
+            # instantiated. So, load the image for this and
+            # all subsequence instances.
+            Player.image = image
+
         self.speed = speed
-        self.image = image
+        self.image = Player.image
         self.pos = image.get_rect().move(0, height)
         self.vertical = 0
+
 
     def moveDireita(self):
         self.pos = self.pos.move(self.speed, self.vertical)
