@@ -2,6 +2,7 @@ __author__ = 'Ricardo'
 import pygame
 from TelaMenu import TelaMenu
 from TelaCenario import TelaCenario
+
 class Jogo(object):
 
     def __init__(self):
@@ -12,9 +13,11 @@ class Jogo(object):
     def inicia(self):
         pygame.init()
         pygame.font.init()
-        pygame.mixer.init()
+        self.music = pygame.mixer
+        self.music.init()
+
         pygame.mouse.set_visible(True)
-        pygame.display.set_caption("Bem vindo")
+        pygame.display.set_caption("Papaleguas - Beep beep!")
         self.screen = pygame.display.set_mode((640, 480))
         self.menu = TelaMenu()
         self.cenario = TelaCenario()
@@ -22,7 +25,7 @@ class Jogo(object):
             if self.status == 0: #Menu
                 self.menu.capturarEventos(self)
             elif self.status == 1: #Jogo rodando
-                self.cenario.mostraFase1(self)
+                self.cenario.mostraFase(self)
             self.clock.tick(60)
         pygame.quit()
         return

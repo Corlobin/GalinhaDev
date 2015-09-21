@@ -8,11 +8,32 @@ class Jogador(pygame.sprite.Sprite):
     def __init__(self, img, height, speed):
         pygame.sprite.Sprite.__init__(self)
 
+
+        self.width=32
+        self.height=32
+        self.numImages = 16
+        self.cImage = 0
+
+
         self.speed = speed
-        self.image = Imagem.load_image(img, 1)
+        self.image = Imagem.load_image(img, 0)
         self.pos = self.image.get_rect().move(0, height)
         self.vertical = 0
 
+    def update(self):
+        if(self.cImage >= self.numImages-1):
+            self.cImage = 0
+        else:
+            self.cImage += 1
+
+    def render(self, window):
+        window.blit(self.image, self.pos, (self.cImage*self.width, 0, self.width, self.height))
+
+    def mover(self,x,y):
+        if(x > 0):
+            self.moveDireita()
+        elif(y > 0):
+            self.moveEsquerda()
 
     def moveDireita(self):
         if self.pos.right <= 642:
@@ -31,7 +52,8 @@ class Jogador(pygame.sprite.Sprite):
         return self.nick
     def getRecord(self):
         return self.record
-
+    def getVelocity(self):
+        return self.speed
     ''' Setters '''
     def setNick(self, nick):
         self.nick = nick
