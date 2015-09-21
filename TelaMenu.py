@@ -2,7 +2,7 @@ __author__ = 'Ricardo'
 
 import pygame
 
-from Player import Player
+from Jogador import Jogador
 from Imagem import Imagem
 
 
@@ -15,8 +15,8 @@ class TelaMenu(object):
         self.backgroundMenu = pygame.transform.scale2x(self.backgroundMenu)
         self.backgroundMenu = pygame.transform.scale2x(self.backgroundMenu)
 
-        self.galinhaAndandoMenu1 = Player("galinhaAndando.gif", 120, 1)
-        self.galinhaAndandoMenu2 = Player("galinhaAndando.gif", 180, 1)
+        self.galinhaAndandoMenu1 = Jogador("galinhaAndando.gif", 120, 1)
+        self.galinhaAndandoMenu2 = Jogador("galinhaAndando.gif", 180, 1)
 
         self.fonte = pygame.font.SysFont("comicsansms", 30)
         self.textoIniciar = self.fonte.render("Iniciar", 1, (255, 255, 225))

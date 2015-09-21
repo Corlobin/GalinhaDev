@@ -2,7 +2,7 @@ __author__ = 'Ricardo'
 
 import pygame
 
-from Player import Player
+from Jogador import Jogador
 from Imagem import Imagem
 
 
@@ -11,7 +11,7 @@ class TelaCenario(object):
         # Iniciais
         self.backgroundJogo = Imagem.load_image('fundoteste.png', 0)
         self.backgroundJogo = pygame.transform.scale(self.backgroundJogo, (800, 500))
-        self.galinha = Player("galinhaAndando.gif", 408, 5)
+        self.galinha = Jogador("galinhaAndando.gif", 408, 5)
         self.backLocal = 0
         return
 
