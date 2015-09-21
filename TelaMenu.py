@@ -2,7 +2,7 @@ __author__ = 'Ricardo'
 
 import pygame
 
-from Player import Player
+from player import Player
 from Imagem import Imagem
 
 
@@ -10,20 +10,22 @@ class TelaMenu(object):
     def __init__(self):
 
         self.posicaoCirculo = 320
-        self.backgroundMenu = Imagem.load_image('panel.png', 0)
-        print("background 1...")
 
+        self.backgroundMenu = Imagem.load_image('panel.png', 0)
         self.backgroundMenu = pygame.transform.scale2x(self.backgroundMenu)
         self.backgroundMenu = pygame.transform.scale2x(self.backgroundMenu)
-        print("background 2...")
+
         self.galinhaAndandoMenu1 = Player("galinhaAndando.gif", 120, 1)
         self.galinhaAndandoMenu2 = Player("galinhaAndando.gif", 180, 1)
+
         self.fonte = pygame.font.SysFont("comicsansms", 30)
         self.textoIniciar = self.fonte.render("Iniciar", 1, (255, 255, 225))
         self.textoSair = self.fonte.render("Sair", 1, (255, 255, 225))
+
         return
 
     def capturarEventos(self, game):
+
         for evento in pygame.event.get():
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_UP:  # PARA CIMA
@@ -38,7 +40,6 @@ class TelaMenu(object):
                     print("Enter")
                     if self.getOpcao() == 1:  # Iniciar
                         game.status = 1
-                        print("iniciar")
                     else:  # sair
                         game.status = 2
 

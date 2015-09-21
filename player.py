@@ -1,35 +1,25 @@
-
 import pygame
 
+from Imagem import Imagem
+
+
 class Player(pygame.sprite.Sprite):
-    image = None
-    def __init__(self, image, height, speed):
+    def __init__(self, img, height, speed):
         pygame.sprite.Sprite.__init__(self)
 
-        if Player.image is None:
-            # This is the first time this class has been
-            # instantiated. So, load the image for this and
-            # all subsequence instances.
-            Player.image = image
-
         self.speed = speed
-        self.image = Player.image
-        self.pos = image.get_rect().move(0, height)
+        self.image = Imagem.load_image(img, 1)
+        self.pos = self.image.get_rect().move(0, height)
         self.vertical = 0
 
 
     def moveDireita(self):
         if self.pos.right <= 642:
             self.pos = self.pos.move(self.speed, self.vertical)
-            #self.pos.right = 32
-            
 
     def moveEsquerda(self):
         if self.pos.left >= 0:
             self.pos.left = self.pos.left - self.speed
-            #self.pos.right = 662
-
-
 
     ''' Getters '''
     def getX(self):

@@ -1,4 +1,4 @@
-from game import Game
+from Jogo import Jogo
 
 
 '''
@@ -8,5 +8,5 @@ Created on 06/09/2015
 '''
 
 if __name__ == '__main__':
-    g = Game()
-    g.inicia(400, 350)
+    g = Jogo()
+    g.inicia()

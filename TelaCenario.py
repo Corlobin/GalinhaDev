@@ -2,7 +2,7 @@ __author__ = 'Ricardo'
 
 import pygame
 
-from Player import Player
+from player import Player
 from Imagem import Imagem
 
 
