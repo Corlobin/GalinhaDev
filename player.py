@@ -19,12 +19,15 @@ class Player(pygame.sprite.Sprite):
 
 
     def moveDireita(self):
-        self.pos = self.pos.move(self.speed, self.vertical)
-        if self.pos.right > 600:
-            self.pos.right = 0
+        if self.pos.right <= 642:
+            self.pos = self.pos.move(self.speed, self.vertical)
+            #self.pos.right = 32
+            
 
     def moveEsquerda(self):
-        self.pos.left = self.pos.left - self.speed
+        if self.pos.left >= 0:
+            self.pos.left = self.pos.left - self.speed
+            #self.pos.right = 662
 
 
 

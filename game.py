@@ -1,5 +1,6 @@
 import os, pygame
 from player import Player
+from cenario import Cenario
 
 main_dir = os.path.split(os.path.abspath(__file__))[0]
 
@@ -11,6 +12,7 @@ class Game(object):
         self.startTime = None
         self.lastTime = 0
         self.status = 0
+        self.backLocal = 0
         return
 
     def inicia(self, altura, largura):
@@ -32,8 +34,8 @@ class Game(object):
         self.backgroundMenu = pygame.transform.scale2x(self.backgroundMenu)
         self.backgroundMenu = pygame.transform.scale2x(self.backgroundMenu)
 
-        self.backgroundJogo = self.load_image('fundoteste.png',0)
-        self.backgroundJogo = pygame.transform.scale(self.backgroundJogo, (800, 500))
+        self.backgroundJogo = self.load_image('fase1.png',0)
+        #self.backgroundJogo = pygame.transform.scale(self.backgroundJogo, (800, 500))
         self.galinha = Player(self.player, 408, 5)
 
         self.galinhaAndandoMenu1 = Player(self.player, 120, 1)
@@ -93,28 +95,25 @@ class Game(object):
         return
 
     def mostraJogo(self, screen):
+        #pygame.display.update()
         for evento in pygame.event.get():
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_RIGHT:
                     self.galinha.moveDireita()
-                    print("galinha andando :p")
-                    print(self.galinha.pos)
+                    print("direita",self.galinha.pos.right)
+                    self.moveCenario1()
                 if evento.key == pygame.K_LEFT:
                     self.galinha.moveEsquerda()
-                    print("galinha andando :p")
-                    print(self.galinha.pos)
+                    print("esquerda",self.galinha.pos.left)
+                    #self.moveCenario2()
 
             if evento.type == pygame.QUIT:
                 self.status = 2
 
-        screen.blit(self.backgroundJogo, (0,0))
+        screen.blit(self.backgroundJogo, (self.backLocal,0))
         screen.blit(self.galinha.image, self.galinha.pos)
-
         pygame.display.update()
         return
-
-
-
 
 
     def load_image(self, name, transparent):
@@ -132,6 +131,17 @@ class Game(object):
         if self.posicaoCirculo == 320:
             return 1
         return 0
+
+    def moveCenario1(self):
+        if(self.galinha.pos.right <= 1500):
+            self.backLocal -= self.galinha.speed*2
+        return
+    def moveCenario2(self):
+        if((self.galinha.pos.right - self.galinha.pos.right) >= 32):
+            self.backLocal += 5
+        return
+            
+        
 
                
 
