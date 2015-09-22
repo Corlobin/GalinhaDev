@@ -1,9 +1,12 @@
 __author__ = 'Ricardo'
-import pygame
+
+
 from TelaMenu import TelaMenu
 from TelaCenario import TelaCenario
+import pygame
 
-class Jogo(object):
+
+class TelaJogo(object):
 
     def __init__(self):
         self.clock = pygame.time.Clock()
@@ -18,6 +21,7 @@ class Jogo(object):
 
         pygame.mouse.set_visible(True)
         pygame.display.set_caption("Papaleguas - Beep beep!")
+        pygame.key.set_repeat(1)
         self.screen = pygame.display.set_mode((640, 480))
         self.menu = TelaMenu()
         self.cenario = TelaCenario()
@@ -30,5 +34,7 @@ class Jogo(object):
         pygame.quit()
         return
 
-
+#Inicia o jogo
+jogo = TelaJogo()
+jogo.inicia()
 

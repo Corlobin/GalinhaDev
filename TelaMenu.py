@@ -2,7 +2,6 @@ __author__ = 'Ricardo'
 
 import pygame
 
-from Jogador import Jogador
 from Imagem import Imagem
 from Som import Som
 
@@ -27,6 +26,7 @@ class TelaMenu(object):
         som.tocar(game.music, "tela_menu.wav")
 
         for evento in pygame.event.get():
+            pygame.key.set_repeat(1)
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_UP:  # PARA CIMA
                     if self.posicaoCirculo == 360:
