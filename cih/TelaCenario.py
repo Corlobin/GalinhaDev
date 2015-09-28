@@ -8,29 +8,28 @@ class TelaCenario(object):
         # Iniciais
         self.backgroundJogo = Imagem.Imagem.load_image('fundoteste.png', 0)
         self.backgroundJogo = pygame.transform.scale(self.backgroundJogo, (800, 500))
-        self.galinha = Jogador.Jogador("playersprites.png", 408, 5)
+        self.galinha = Jogador.Jogador("playersprites.png", 408, 0.5)
         self.backLocal = 0
         return
 
-    def mostraFase(self, game):
+    def mostraFase(self, game, evento):
         self.som = Som.Som()
         self.som.tocar(game.music, "beepbeep.wav")
         x = 0
         y = 0
-        for evento in pygame.event.get():
-            if evento.type == pygame.KEYDOWN:
-                if evento.key == pygame.K_RIGHT:
-                    x = self.galinha.getVelocity()
-                    print("direita", self.galinha.pos.right)
-                    self.moveCenario()
+        if evento.type == pygame.KEYDOWN:
+            if evento.key == pygame.K_RIGHT:
+                x = self.galinha.getVelocity()
+                print("direita", self.galinha.pos.right)
+                self.moveCenario()
 
-                if evento.key == pygame.K_LEFT:
-                    y = self.galinha.getVelocity()
-                    self.galinha.moveEsquerda()
-                    print("esquerda", self.galinha.pos.left)
+            if evento.key == pygame.K_LEFT:
+                y = self.galinha.getVelocity()
+                self.galinha.moveEsquerda()
+                print("esquerda", self.galinha.pos.left)
 
-            if evento.type == pygame.QUIT:
-                game.status = 2
+        if evento.type == pygame.QUIT:
+            game.status = 2
 
         game.screen.blit(self.backgroundJogo, (self.backLocal, 0))
 

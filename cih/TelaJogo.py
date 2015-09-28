@@ -26,22 +26,17 @@ class TelaJogo(object):
         self.cenario = TelaCenario.TelaCenario()
 
         while self.status != 2: # Loop principal do jogo
-            eventos = self.capturarEventos()
-            if self.status == 0: #Menu
-                self.menu.mostrarMenu(self)
-            elif self.status == 1: #Jogo rodando
-                self.cenario.mostraFase(self)
+            for evento in pygame.event.get():
+                if self.status == 0: #Menu
+                    self.menu.mostrarMenu(self, evento)
+                elif self.status == 1: #Jogo rodando
+                    self.cenario.mostraFase(self, evento)
 
 
-        self.clock.tick(60)
+        self.clock.tick(30)
         pygame.quit()
         return
 
-    def capturarEventos(self):
-        eventos = []
-        for evento in pygame.event.get():
-            eventos.append(evento)
-        return eventos
 
 #Inicia o jogo
 jogo = TelaJogo()

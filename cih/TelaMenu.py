@@ -17,7 +17,7 @@ class TelaMenu(object):
         self.textoIniciar = self.fonte.render("Iniciar", 1, (255, 255, 225))
         self.textoSair = self.fonte.render("Sair", 1, (255, 255, 225))
 
-    def mostrarMenu(self, game):
+    def mostrarMenu(self, game, evento):
         self.som = Som.Som()
         self.som.tocar(game.music, "tela_menu.wav")
 
