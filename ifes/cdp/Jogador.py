@@ -5,16 +5,17 @@ from ifes.cdp.Imagem import Imagem
 
 
 class Jogador(pygame.sprite.Sprite):
-    def __init__(self, img, height, speed, w, h):
+    def __init__(self, img, height, speed, w, h, qtd):
         pygame.sprite.Sprite.__init__(self)
         self.width=w
         self.height=h
-        self.numImages = 16
+        self.numImages = qtd
         self.cImage = 0
 
 
         self.speed = speed
         self.image = Imagem.load_image(img, 1)
+        self.rect = self.image.get_rect()
         self.pos = self.image.get_rect().move(0, height)
         self.vertical = 0
 
@@ -25,7 +26,7 @@ class Jogador(pygame.sprite.Sprite):
             self.cImage += 1
 
     def render(self, window):
-        window.blit(self.image, self.pos, (self.cImage*self.width+15, 0, self.width, self.height))
+        window.blit(self.image, self.pos, (self.cImage*self.width, 0, self.width, self.height))
 
     def mover(self,x,y):
         if(x > 0):

@@ -17,30 +17,24 @@ class TelaMenu(object):
         self.textoIniciar = self.fonte.render("Iniciar", 1, (255, 255, 225))
         self.textoSair = self.fonte.render("Sair", 1, (255, 255, 225))
 
-    def mostrarMenu(self, game, evento):
+    def mostrarMenu(self, game):
         self.som = Som.Som()
         self.som.tocar(game.music, "tela_menu.wav")
+        if game.botoes[0]:
+            if self.posicaoCirculo == 360:
+                self.posicaoCirculo = 320
 
-        if evento.type == pygame.KEYDOWN:
-            if evento.key == pygame.K_UP:  # PARA CIMA
-                if self.posicaoCirculo == 360:
-                    self.posicaoCirculo = 320
+        if game.botoes[1]:
+            if self.posicaoCirculo == 320:
+                self.posicaoCirculo = 360
 
-            if evento.key == pygame.K_DOWN:  # PARA BAIXO
-                if self.posicaoCirculo == 320:
-                    self.posicaoCirculo = 360
-
-            if evento.key == 13:  # KEY ENTER
-                self.som.parar()
-                print("Enter")
-                if self.getOpcao() == 1:  # Iniciar
-                    game.status = 1
-                else:  # sair
-                    game.status = 2
-
-        if evento.type == pygame.QUIT:
-            game.status = 2
-
+        if game.botoes[4]:  # KEY ENTER
+            self.som.parar()
+            print("Enter")
+            if self.getOpcao() == 1:  # Iniciar
+                game.status = 1
+            else:  # sair
+                game.status = 2
         self.update(game)
         return
 

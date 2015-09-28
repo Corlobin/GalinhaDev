@@ -1,3 +1,3 @@
 __author__ = 'Ricardo'
 
-__all__ = ["Imagem", "Jogador", "Som"]
+__all__ = ["Imagem", "Jogador", "Som", "Moeda"]

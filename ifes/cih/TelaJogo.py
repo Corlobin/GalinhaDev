@@ -19,21 +19,24 @@ class TelaJogo(object):
         self.music = pygame.mixer
         self.music.init()
         pygame.mouse.set_visible(True)
-        pygame.display.set_caption("Papaleguas - Beep beep!")
+        pygame.display.set_caption("Guerra em Marte")
         self.screen = pygame.display.set_mode((640, 480))
 
         self.menu = TelaMenu.TelaMenu()
         self.cenario = TelaCenario.TelaCenario()
 
-                       #CIMA  #BAIX  #ESQ   #DIRE  #ENTER #ESC
+                       #0CIMA  #1BAIX  #2ESQ   #3DIRE  #4ENTER #5ESC
         self.botoes = [False, False, False, False, False, False]
+
         while self.status != 2: # Loop principal do jogo
             self.capturarEventos()
+
             if self.status == 0: #Menu
                 self.menu.mostrarMenu(self)
             elif self.status == 1: #Jogo rodando
                 self.cenario.mostraFase(self)
-        self.clock.tick(30)
+
+            self.clock.tick(30)
         pygame.quit()
         return
 
@@ -44,14 +47,26 @@ class TelaJogo(object):
                     self.botoes[3] = True
                 if evento.key == pygame.K_LEFT:
                     self.botoes[2] = True
+                if evento.key == 13:  # KEY ENTER
+                    self.botoes[4] = True
+                if evento.key == pygame.K_UP:  # PARA CIMA
+                    self.botoes[0] = True
+                if evento.key == pygame.K_DOWN:  # PARA BAIXO
+                    self.botoes[1] = True
+                if evento.key == pygame.K_ESCAPE:  # ESC
+                    self.botoes[5] = True
             if evento.type == pygame.KEYUP:
                 if evento.key == pygame.K_RIGHT:
                     self.botoes[3] = False
                 if evento.key == pygame.K_LEFT:
-                    self.botoes[3] = False
-
-
-#Inicia o jogo
-jogo = TelaJogo()
-jogo.inicia()
-
+                    self.botoes[2] = False
+                if evento.key == 13:
+                    self.botoes[4] = False
+                if evento.key == pygame.K_UP:  # PARA CIMA
+                    self.botoes[0] = False
+                if evento.key == pygame.K_DOWN:  # PARA BAIXO
+                    self.botoes[1] = False
+                if evento.key == pygame.K_ESCAPE:  # ESC
+                    self.botoes[5] = False
+            if evento.type == pygame.QUIT:
+                self.status = 2
