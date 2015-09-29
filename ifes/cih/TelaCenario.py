@@ -29,12 +29,13 @@ class TelaCenario(object):
 
         if game.botoes[3]:
             print(x)
-            self.tank.moveDireita()
+            #self.tank.moveDireita()
             self.moveCenario()
-            print(self.tank.pos.right)
+            #print(self.tank.pos.right)
         if game.botoes[2]:
-            self.tank.moveEsquerda()
-
+            self.moveCenarioEsquerda()
+            #self.tank.moveEsquerda()
+        print(self.backLocal)
         self.moeda.update()
         game.screen.blit(self.backgroundJogo, (self.backLocal, 0))
         self.tank.render(game.screen)
@@ -44,9 +45,14 @@ class TelaCenario(object):
         return
 
     def moveCenario(self):
-        if (self.tank.pos.right <= 99999):
+        if (self.backLocal <= 9999):
             self.backLocal -= self.tank.speed*2
             self.moeda.moveEsquerda(self.tank.speed*2)
+        return
+    def moveCenarioEsquerda(self):
+        if (self.backLocal < 0):
+            self.backLocal += self.tank.speed*2
+            self.moeda.moveDireita(self.tank.speed*2)
         return
     def checkCollision(self, sprite1, sprite2):
         print(sprite1)

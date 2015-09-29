@@ -30,4 +30,6 @@ class Moeda(pygame.sprite.Sprite):
 
     def moveEsquerda(self, velocidade):
         self.pos.left -= velocidade
+    def moveDireita(self, velocidade):
+        self.pos.left += velocidade
 
