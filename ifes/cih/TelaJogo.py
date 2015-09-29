@@ -4,13 +4,15 @@ import pygame
 
 from ifes.cih import TelaCenario
 from ifes.cih import TelaMenu
-
+from ifes.cih import TelaCreditos
+from ifes.cih import TelaRanking
 
 class TelaJogo(object):
 
     def __init__(self):
         self.clock = pygame.time.Clock()
-        self.status = 0
+        self.status = 3
+        self.fps = 30
         return
 
     def inicia(self):
@@ -24,19 +26,27 @@ class TelaJogo(object):
 
         self.menu = TelaMenu.TelaMenu()
         self.cenario = TelaCenario.TelaCenario()
+        self.ranking = TelaRanking.TelaRanking()
+        self.creditos = TelaCreditos.TelaCreditos()
 
                        #0CIMA  #1BAIX  #2ESQ   #3DIRE  #4ENTER #5ESC
         self.botoes = [False, False, False, False, False, False]
 
-        while self.status != 2: # Loop principal do jogo
+        while self.status != 4: # Loop principal do jogo
             self.capturarEventos()
 
-            if self.status == 0: #Menu
+            if self.status == 0: #prefacio
+                self.cenario.mostrarPrefacio(self)
+            elif self.status == 1: #ranking
+                self.ranking.mostrarRanking(self)
+            elif self.status == 2: #creditos
+                self.creditos.mostrarCreditos(self)
+            elif self.status == 3: #menu
                 self.menu.mostrarMenu(self)
-            elif self.status == 1: #Jogo rodando
+            elif self.status == 5: #jogo rodando
                 self.cenario.mostraFase(self)
 
-            self.clock.tick(30)
+            self.clock.tick(self.fps)
         pygame.quit()
         return
 
@@ -69,4 +79,4 @@ class TelaJogo(object):
                 if evento.key == pygame.K_ESCAPE:  # ESC
                     self.botoes[5] = False
             if evento.type == pygame.QUIT:
-                self.status = 2
+                self.status = 4

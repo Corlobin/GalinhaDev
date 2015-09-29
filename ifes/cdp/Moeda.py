@@ -17,8 +17,17 @@ class Moeda(pygame.sprite.Sprite):
         self.image = Imagem.load_image(img, 1)
         self.rect = self.image.get_rect()
         self.pos = self.image.get_rect().move(width, height)
+        self.pontos = 1
         self.vertical = 0
 
+
+    def setPontos(self, pontos):
+        self.pontos = pontos
+    def getPontos(self):
+        return self.pontos
+
+    def getRect(self):
+        return self.pos
     def update(self):
         if(self.cImage >= self.numImages-1):
             self.cImage = 0

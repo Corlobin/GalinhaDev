@@ -5,8 +5,10 @@ from ifes.cdp.Imagem import Imagem
 
 
 class Jogador(pygame.sprite.Sprite):
+
     def __init__(self, img, height, speed, w, h, qtd):
         pygame.sprite.Sprite.__init__(self)
+
         self.width=w
         self.height=h
         self.numImages = qtd
@@ -17,8 +19,16 @@ class Jogador(pygame.sprite.Sprite):
         self.image = Imagem.load_image(img, 1)
         self.rect = self.image.get_rect()
         self.pos = self.image.get_rect().move(0, height)
-        self.vertical = 0
 
+        self.vertical = 0
+        self.pontos = 0
+
+    def atualizaPontuacao(self, pontos):
+        self.pontos += pontos
+    def getPontuacao(self):
+        return self.pontos
+    def getRect(self):
+        return self.pos
     def update(self):
         if(self.cImage >= self.numImages-1):
             self.cImage = 0

@@ -15,7 +15,7 @@ class Som(object):
             path = os.path.join(diretorio, 'dados/sons/', musica)
             if Som.Singleton is None:
                 Som.Singleton = sound.Sound(path)
-                Som.Singleton.play()
+                Som.Singleton.play(1)
 
         except pygame.error:
             print(path)
