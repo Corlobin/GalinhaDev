@@ -9,20 +9,15 @@ main_dir = os.path.split(os.path.abspath(__file__))[0]
 
 class Imagem(object):
 
-    def __init__(self):
-        return
-
     @staticmethod
     def load_image(name, transparent):
         diretorio = main_dir.replace("cdp", "")
         path = os.path.join(diretorio, 'dados/imagens/', name)
         print(path)
         try:
-            print(path)
             surface = pygame.image.load(path)
 
         except pygame.error:
-            print(path)
             raise SystemExit('Nao foi possivel carregar a imagem %s %s ' % (path, pygame.get_error()))
 
 

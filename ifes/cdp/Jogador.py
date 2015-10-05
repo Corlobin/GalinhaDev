@@ -11,9 +11,8 @@ class Jogador(pygame.sprite.Sprite):
 
         self.width=w
         self.height=h
-        self.numImages = qtd
+        self.num_images = qtd
         self.cImage = 0
-
 
         self.speed = speed
         self.image = Imagem.load_image(img, 1)
@@ -22,15 +21,16 @@ class Jogador(pygame.sprite.Sprite):
 
         self.vertical = 0
         self.pontos = 0
+        self.highscore = 0
 
-    def atualizaPontuacao(self, pontos):
+    def atualiza_pontuacao(self, pontos):
         self.pontos += pontos
-    def getPontuacao(self):
+    def get_pontuacao(self):
         return self.pontos
-    def getRect(self):
+    def get_rect(self):
         return self.pos
     def update(self):
-        if(self.cImage >= self.numImages-1):
+        if self.cImage >= self.num_images-1 :
             self.cImage = 0
         else:
             self.cImage += 1
@@ -39,35 +39,24 @@ class Jogador(pygame.sprite.Sprite):
         window.blit(self.image, self.pos, (self.cImage*self.width, 0, self.width, self.height))
 
     def mover(self,x,y):
-        if(x > 0):
-            self.moveDireita()
-        elif(y > 0):
-            self.moveEsquerda()
+        if x > 0 :
+            self.move_direita()
+        elif y > 0 :
+            self.move_esquerda()
 
 
-    def moveDireita(self):
+    def move_direita(self):
         if self.pos.right <= 642:
             self.pos = self.pos.move(self.speed, self.vertical)
         self.update()
 
-    def moveEsquerda(self):
+    def move_esquerda(self):
         if self.pos.left >= 0:
             self.pos.left = self.pos.left - self.speed
         self.update()
 
-    ''' Getters '''
-    def getX(self):
-        return self.x
-    def getY(self):
-        return self.y
-    def getNick(self):
-        return self.nick
-    def getRecord(self):
-        return self.record
-    def getVelocity(self):
-        return self.speed
-    ''' Setters '''
-    def setNick(self, nick):
-        self.nick = nick
-    def setRecord(self, record):
-        self.record = record
+    def move_baixo(self):
+        self.pos = self.pos.move(0, self.speed)
+    def move_cima(self):
+        self.pos = self.pos.move(0, -self.speed)
+
